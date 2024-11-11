@@ -65,15 +65,19 @@ function NavBar() {
   const [query, setQuery] = useState("");
   return (
       <nav className="nav-bar">
-        <div className="logo">
+        <Logo />
+        <Search />
+        <NumResults />
+      </nav>
+  );
+}
+
+function Logo() {
+  return (
+    <div className="logo">
           <span role="img">🍿</span>
           <h1>usePopcorn</h1>
         </div>
-        <Search />
-        <p className="num-results">
-          Found <strong>X</strong> results
-        </p>
-      </nav>
   );
 }
 
@@ -87,6 +91,14 @@ function Search() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
+  );
+}
+
+function NumResults() {
+  return (
+        <p className="num-results">
+          Found <strong>X</strong> results
+        </p>
   );
 }
 
