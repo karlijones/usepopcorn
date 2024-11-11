@@ -69,6 +69,17 @@ function NavBar() {
           <span role="img">🍿</span>
           <h1>usePopcorn</h1>
         </div>
+        <Search />
+        <p className="num-results">
+          Found <strong>X</strong> results
+        </p>
+      </nav>
+  );
+}
+
+function Search() {
+  const [query, setQuery] = useState("");
+  return (
         <input
           className="search"
           type="text"
@@ -76,10 +87,6 @@ function NavBar() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
-        <p className="num-results">
-          Found <strong>X</strong> results
-        </p>
-      </nav>
   );
 }
 
@@ -92,6 +99,7 @@ function Main() {
   const avgImdbRating = average(watched.map((movie) => movie.imdbRating));
   const avgUserRating = average(watched.map((movie) => movie.userRating));
   const avgRuntime = average(watched.map((movie) => movie.runtime));
+  
   return (
     <main className="main">
           <div className="box">
