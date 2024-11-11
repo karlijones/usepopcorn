@@ -55,8 +55,6 @@ export default function App() {
     <>
       <NavBar />
       <Main />
-
-      
     </>
 );
 }
@@ -103,18 +101,21 @@ function NumResults() {
 }
 
 function Main() {
-  const [movies, setMovies] = useState(tempMovieData);
-  const [watched, setWatched] = useState(tempWatchedData);
-  const [isOpen1, setIsOpen1] = useState(true);
-  const [isOpen2, setIsOpen2] = useState(true);
-
-  const avgImdbRating = average(watched.map((movie) => movie.imdbRating));
-  const avgUserRating = average(watched.map((movie) => movie.userRating));
-  const avgRuntime = average(watched.map((movie) => movie.runtime));
   
   return (
     <main className="main">
-          <div className="box">
+      <ListBox />
+      <WatchedBox />
+    </main>
+  );
+}
+
+function ListBox() {
+  const [movies, setMovies] = useState(tempMovieData);
+  const [isOpen1, setIsOpen1] = useState(true);
+
+  return (
+    <div className="box">
             <button
               className="btn-toggle"
               onClick={() => setIsOpen1((open) => !open)}
@@ -138,8 +139,19 @@ function Main() {
               </ul>
             )}
           </div>
+  );
+}
 
-        <div className="box">
+function WatchedBox() {
+  const [watched, setWatched] = useState(tempWatchedData);
+  const [isOpen2, setIsOpen2] = useState(true);
+
+  const avgImdbRating = average(watched.map((movie) => movie.imdbRating));
+  const avgUserRating = average(watched.map((movie) => movie.userRating));
+  const avgRuntime = average(watched.map((movie) => movie.runtime));
+  
+  return (
+    <div className="box">
           <button
             className="btn-toggle"
             onClick={() => setIsOpen2((open) => !open)}
@@ -195,8 +207,5 @@ function Main() {
             </>
           )}
         </div>
-      </main>
   );
 }
-
-
