@@ -54,7 +54,7 @@ export default function App() {
   const [movies, setMovies] = useState(tempMovieData);
   return (
     <>
-      <NavBar />
+      <NavBar movies={movies} />
       <Main movies={movies} />
     </>
 );
