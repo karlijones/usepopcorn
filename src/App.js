@@ -60,13 +60,13 @@ export default function App() {
 );
 }
 
-function NavBar() {
+function NavBar({ movies }) {
   const [query, setQuery] = useState("");
   return (
       <nav className="nav-bar">
         <Logo />
         <Search />
-        <NumResults />
+        <NumResults movies={movies} />
       </nav>
   );
 }
@@ -93,10 +93,10 @@ function Search() {
   );
 }
 
-function NumResults() {
+function NumResults({ movies }) {
   return (
         <p className="num-results">
-          Found <strong>X</strong> results
+          Found <strong>{movies.length}</strong> results
         </p>
   );
 }
