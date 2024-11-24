@@ -59,8 +59,8 @@ export default function App() {
 
   fetch(`http://www.omdbapi.com/?apikey=${KEY}&
     s=interstellar`)
-    .then(res => res.json())
-    .then(data =>console.log(data));
+    .then((res) => res.json())
+    .then((data) =>console.log(data));
 
   return (
     <>
