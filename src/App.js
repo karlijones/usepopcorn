@@ -76,6 +76,8 @@ export default function App() {
         setIsLoading(false);} catch (err) {
           console.error(err.message);
           setError(err.message);
+        } finally {
+          setIsLoading(false);
         }
     }
     fetchMovies();
@@ -113,7 +115,7 @@ function Loader() {
 function ErrorMessage({message}) {
   return (
   <p className="error">
-    <span>⛔️</span> {message}
+    <span>⛔️Failed to fetch</span> {message}
   </p>
   );
 }
