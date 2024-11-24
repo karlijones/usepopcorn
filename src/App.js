@@ -70,8 +70,6 @@ export default function App() {
       </NavBar>
 
        <Main>   
-
-
         <Box>
           <MovieList movies={movies} />
         </Box>
@@ -126,11 +124,8 @@ function NumResults({ movies }) {
 }
 
 function Main({ children }) {
-  
   return (
-    <main className="main">
-      {children}
-    </main>
+    <main className="main">{children}</main>
   );
 }
 
