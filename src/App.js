@@ -61,6 +61,19 @@ export default function App() {
   const [error, setError] = useState("");
   const tempQuery = "interstellar";
 
+  //Dependency Array Included
+  useEffect(function() {
+    console.log("A");
+  }, []);
+
+  //No dependency array
+  useEffect(function() {
+    console.log("B");
+  });
+
+  //No useEffect
+  console.log("C");
+
   useEffect(function() {
     async function fetchMovies() {
       try {setIsLoading(true);
