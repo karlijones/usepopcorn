@@ -84,10 +84,12 @@ export default function App() {
 
   useEffect(function() {
     async function fetchMovies() {
-      try {setIsLoading(true);
-      const res = await fetch(
-        `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`
-      );
+      try {
+        setIsLoading(true);
+        setError('');
+        const res = await fetch(
+          `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`
+        );
 
         if (!res.ok) 
           throw new Error("Something went wrong with fetching movies");
