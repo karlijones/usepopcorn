@@ -62,7 +62,7 @@ export default function App() {
   const tempQuery = "interstellar";
 
   //Dependency Array Included - will be executed last
-  useEffect(function() {
+  /*useEffect(function() {
     console.log("A");
   }, []);
 
@@ -80,6 +80,7 @@ export default function App() {
 
   //No useEffect - will render first
   console.log("C");
+  */
 
   useEffect(function() {
     async function fetchMovies() {
