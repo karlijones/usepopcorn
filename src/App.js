@@ -71,6 +71,13 @@ export default function App() {
     console.log("B");
   });
 
+  //query state
+    useEffect(function() {
+      console.log("D");
+    }
+    [query]
+  );
+
   //No useEffect - will render first
   console.log("C");
 
