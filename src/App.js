@@ -123,6 +123,7 @@ function handleCloseMovie() {
             return;
           }
 
+          handleCloseMovie();
           fetchMovies();
         }, 
         [query]
@@ -177,7 +178,6 @@ function ErrorMessage({message}) {
 }
 
 function NavBar({ children }) {
-  const [query, setQuery] = useState("");
   return (
       <nav className="nav-bar">
         <Logo />
@@ -265,26 +265,26 @@ function MovieList({ movies, onSelectMovie }) {
   
   return (
     <ul className="list list-movies">
-                {movies?.map((movie) => (
-                 <Movie movie={movie} key={movie.imdbID} 
-                 onSelectMovie={onSelectMovie}/> 
-                ))}
-              </ul>
+      {movies?.map((movie) => (
+        <Movie movie={movie} key={movie.imdbID} 
+        onSelectMovie={onSelectMovie}/> 
+        ))}
+    </ul>
   );
 }
 
 function Movie({ movie, onSelectMovie }) {
   return (
-          <li onClick={() => onSelectMovie(movie.imdbID)}>
-              <img src={movie.Poster} alt={`${movie.Title} poster`} />
-                <h3>{movie.Title}</h3>
-                  <div>
-                    <p>
-                      <span>🗓</span>
-                      <span>{movie.Year}</span>
-                    </p>
-                  </div>
-          </li>
+    <li onClick={() => onSelectMovie(movie.imdbID)}>
+        <img src={movie.Poster} alt={`${movie.Title} poster`} />
+        <h3>{movie.Title}</h3>
+        <div>
+            <p>
+              <span>🗓</span>
+              <span>{movie.Year}</span>
+            </p>
+        </div>
+    </li>
   );
 }
 
@@ -305,26 +305,26 @@ function WatchedSummary({ watched }) {
   
   return (
     <div className="summary">
-                <h2>Movies you watched</h2>
-                <div>
-                  <p>
-                    <span>#️⃣</span>
-                    <span>{watched.length} movies</span>
-                  </p>
-                  <p>
-                    <span>⭐️</span>
-                    <span>{avgImdbRating}</span>
-                  </p>
-                  <p>
-                    <span>🌟</span>
-                    <span>{avgUserRating}</span>
-                  </p>
-                  <p>
-                    <span>⏳</span>
-                    <span>{avgRuntime} min</span>
-                  </p>
-                </div>
-              </div>
+        <h2>Movies you watched</h2>
+        <div>
+          <p>
+            <span>#️⃣</span>
+            <span>{watched.length} movies</span>
+          </p>
+          <p>
+            <span>⭐️</span>
+            <span>{avgImdbRating}</span>
+          </p>
+          <p>
+            <span>🌟</span>
+            <span>{avgUserRating}</span>
+          </p>
+          <p>
+              <span>⏳</span>
+              <span>{avgRuntime} min</span>
+          </p>
+        </div>
+    </div>
   );
 }
 
@@ -332,7 +332,10 @@ function WatchedMoviesList({ watched }) {
   return (
     <ul className="list">
         {watched.map((movie) => (
-          <WatchedMovie movie={movie} key={movie.imdbID} />
+          <WatchedMovie 
+            movie={movie} 
+            key={movie.imdbID} 
+          />
         ))}
     </ul>
   );
@@ -343,20 +346,20 @@ function WatchedMovie({ movie }) {
     <li >
         <img src={movie.Poster} alt={`${movie.Title} poster`} />
           <h3>{movie.Title}</h3>
-            <div>
-               <p>
-                  <span>⭐️</span>
-                  <span>{movie.imdbRating}</span>
-                </p>
-                <p>
-                  <span>🌟</span>
-                  <span>{movie.userRating}</span>
-                </p>
-                <p>
-                  <span>⏳</span>
-                  <span>{movie.runtime} min</span>
-                </p>
-            </div>
+          <div>
+            <p>
+              <span>⭐️</span>
+              <span>{movie.imdbRating}</span>
+            </p>
+            <p>
+              <span>🌟</span>
+              <span>{movie.userRating}</span>
+            </p>
+            <p>
+              <span>⏳</span>
+              <span>{movie.runtime} min</span>
+            </p>
+          </div>
     </li>
   );
 }
