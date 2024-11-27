@@ -61,17 +61,17 @@ export default function App() {
   const [error, setError] = useState("");
   const tempQuery = "interstellar";
 
-  //Dependency Array Included
+  //Dependency Array Included - will be executed last
   useEffect(function() {
     console.log("A");
   }, []);
 
-  //No dependency array
+  //No dependency array - will be executed second
   useEffect(function() {
     console.log("B");
   });
 
-  //No useEffect
+  //No useEffect - will render first
   console.log("C");
 
   useEffect(function() {
