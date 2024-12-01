@@ -289,6 +289,18 @@ function Movie({ movie, onSelectMovie }) {
 }
 
 function MovieDetails({selectedId, onCloseMovie}) {
+  const [movie, setMovie] = useState({})
+
+  useEffect(function(){
+    async function getMovieDetails() {
+      const res = await fetch(
+        `http://www.omdbapi.com/?apikey=${KEY}&i=${selectedId}`
+      );
+      const data = await res.json();
+      setMovie(data);
+    }
+  }, []);
+
   return (
     <div className="details">
       <button className="btn-back" onClick={onCloseMovie}>
