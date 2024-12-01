@@ -315,7 +315,7 @@ function MovieDetails({selectedId, onCloseMovie}) {
       setMovie(data);
     }
     getMovieDetails();
-  }, []);
+  }, [selectedId]);
 
   return (
     <div className="details">
@@ -335,7 +335,9 @@ function MovieDetails({selectedId, onCloseMovie}) {
       </header>
 
       <section>
-        <StarRating />
+        <div className="rating">
+        <StarRating maxRating={10} size={24}/>
+        </div>
         <p><em>{plot}</em></p>
         <p>Starring {actors}</p>
         <p>Directed by {director}</p>
