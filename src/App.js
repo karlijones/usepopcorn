@@ -290,6 +290,7 @@ function Movie({ movie, onSelectMovie }) {
 
 function MovieDetails({selectedId, onCloseMovie}) {
   const [movie, setMovie] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     Title: title, 
@@ -306,19 +307,27 @@ function MovieDetails({selectedId, onCloseMovie}) {
 
   console.log(title, year);
 
-  useEffect(function(){
+  useEffect(
+    function() {
     async function getMovieDetails() {
+      setIsLoading(true);
       const res = await fetch(
         `http://www.omdbapi.com/?apikey=${KEY}&i=${selectedId}`
       );
       const data = await res.json();
       setMovie(data);
+      setIsLoading(false);
     }
     getMovieDetails();
-  }, [selectedId]);
+  }, [selectedId]
+);
 
   return (
     <div className="details">
+      {isLoading ? ( 
+        <Loader /> 
+      ) : ( 
+      <>
       <header>
       <button className="btn-back" onClick={onCloseMovie}>
         &larr;
@@ -342,6 +351,8 @@ function MovieDetails({selectedId, onCloseMovie}) {
         <p>Starring {actors}</p>
         <p>Directed by {director}</p>
       </section>
+      </>
+      )}
     </div>
   );
 }
