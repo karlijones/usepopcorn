@@ -84,16 +84,18 @@ export default function App() {
   */
 
 function handleSelectMovie(id) {
-  setSelectedId(selectedId => id === selectedId ? 
-  null : id);
+  setSelectedId((selectedId) => (id === selectedId ? 
+  null : id));
 } 
 
 function handleCloseMovie() {
   setSelectedId(null);
 }
 
-  useEffect(function() {
-    async function fetchMovies() {
+  useEffect(
+    function() {
+    
+      async function fetchMovies() {
       try {
         setIsLoading(true);
         setError('');
