@@ -301,8 +301,9 @@ function MovieDetails({selectedId, onCloseMovie, onAddWatched, watched}) {
   const [isLoading, setIsLoading] = useState(false);
   const [userRating, setUserRating] = useState("");
 
-  const isWatched = watched.map(movie=>movie.imdbID);
-  console.log(isWatched);
+  const isWatched = watched.map(movie=>movie.imdbID).includes(selectedId);
+  const watchedUserRating = watched.find
+  (movie=>imdbID === selectedId)?.userRating;
 
   const {
     Title: title, 
