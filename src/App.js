@@ -159,6 +159,7 @@ function handleAddWatched(movie) {
               selectedId={selectedId}
               onCloseMovie={handleCloseMovie} 
               onAddWatched={handleAddWatched}
+              watched={watched}
             />
           ) : (
             <>
@@ -295,10 +296,12 @@ function Movie({ movie, onSelectMovie }) {
   );
 }
 
-function MovieDetails({selectedId, onCloseMovie, onAddWatched}) {
+function MovieDetails({selectedId, onCloseMovie, onAddWatched, watched}) {
   const [movie, setMovie] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [userRating, setUserRating] = useState("");
+
+  const isWatched = watched.map(movie=>movie.imdbID);
 
   const {
     Title: title, 
@@ -343,48 +346,62 @@ function MovieDetails({selectedId, onCloseMovie, onAddWatched}) {
   }, [selectedId]
 );
 
-  return (
-    <div className="details">
-      {isLoading ? ( 
-        <Loader /> 
-      ) : ( 
+return (
+  <div className="details">
+    {isLoading ? (
+      <Loader />
+    ) : (
       <>
-      <header>
-      <button className="btn-back" onClick={onCloseMovie}>
-        &larr;
-      </button>
-      <img src={poster} alt={`Poster of ${movie} movie`} />
-      <div className="details-overview">
-        <h2>{title}</h2>
-        <p>{released} &bull; {runtime}
-        </p>
-        <p>{genre}</p>
-        <p><span>⭐️</span>{imdbRating} IMDB rating
-        </p>
-      </div>
-      </header>
-
-      <section>
-        <div className="rating">
-        <StarRating 
-        maxRating={10} 
-        size={24}
-        onSetRating={setUserRating}
-        />
-
-        {userRating > 0 && (<button className="btn-add" onClick=
-        {handleAdd}>+ Add to list</button>
-        </div>
-        <p><em>{plot}</em></p>
-        <p>Starring {actors}</p>
-        <p>Directed by {director}</p>
-      </section>
+        <header>
+          <button className="btn-back" onClick={onCloseMovie}>
+            &larr;
+          </button>
+          <img src={poster} alt={`Poster of ${movie} movie`} />
+          <div className="details-overview">
+            <h2>{title}</h2>
+            <p>
+              {released} &bull; {runtime}
+            </p>
+            <p>{genre}</p>
+            <p>
+              <span>⭐️</span>
+              {imdbRating} IMDb rating
+            </p>
+          </div>
+        </header>
+        <section>
+          <div className="rating">
+            {!isWatched ? (
+              <>
+                <StarRating
+                  maxRating={10}
+                  size={24}
+                  onSetRating={setUserRating}
+                />
+                {userRating > 0 && (
+                  <button className="btn-add" onClick={handleAdd}>
+                    + Add to list
+                  </button>
+                )}
+              </>
+            ) : (
+              <p>
+                You rated with movie {watchedUserRating} <span>⭐️</span>
+              </p>
+            )}
+          </div>
+          <p>
+            <em>{plot}</em>
+          </p>
+          <p>Starring {actors}</p>
+          <p>Directed by {director}</p>
+        </section>
       </>
-      )}
-    </div>
+    )}
+  </div>
   );
 }
-
+ 
 function WatchedSummary({ watched }) {
   const avgImdbRating = average(watched.map((movie) => movie.imdbRating));
   const avgUserRating = average(watched.map((movie) => movie.userRating));
