@@ -353,12 +353,17 @@ function MovieDetails({selectedId, onCloseMovie, onAddWatched, watched}) {
   }
 
   useEffect(function(){
-    document.addEventListener("keydown", function(e) {
+    function callback (e) {
       if(e.code === "Escape") {
         onCloseMovie();
         console.log("CLOSING");
       }
-    });
+    }
+    document.addEventListener("keydown", callback);
+
+    return function() {
+      document.removeEventListener("keydown", callback);
+    }
   }, [onCloseMovie]);
 
   useEffect(
