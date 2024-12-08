@@ -102,6 +102,7 @@ function handleDeleteWatched(id) {
 
   useEffect(
     function() {
+      const controller = new AbortController();
     
       async function fetchMovies() {
       try {
