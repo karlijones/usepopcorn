@@ -136,7 +136,12 @@ function handleDeleteWatched(id) {
           }
 
           handleCloseMovie();
+          
           fetchMovies();
+          
+          return function () {
+            controller.abort();
+          };
         }, 
         [query]
       );
