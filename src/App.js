@@ -107,7 +107,7 @@ function handleDeleteWatched(id) {
       async function fetchMovies() {
       try {
         setIsLoading(true);
-        setError('');
+        setError("");
         const res = await fetch(
           `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`, 
           { signal: controller.signal }
@@ -121,9 +121,13 @@ function handleDeleteWatched(id) {
           ("Movie not found");
 
           setMovies(data.Search);
+          setError("");
           } catch (err) {
             console.error(err.message);
-            setError(err.message);
+
+            if (err.name !== "AbortError") {
+              setError(err.message);
+            }
           } finally {
             setIsLoading(false);
           }
