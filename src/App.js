@@ -109,7 +109,8 @@ function handleDeleteWatched(id) {
         setIsLoading(true);
         setError('');
         const res = await fetch(
-          `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`
+          `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`, 
+          { signal: controller.signal }
         );
 
           if (!res.ok) 
