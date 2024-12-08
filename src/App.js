@@ -359,7 +359,7 @@ function MovieDetails({selectedId, onCloseMovie, onAddWatched, watched}) {
         console.log("CLOSING");
       }
     });
-  }, []);
+  }, [onCloseMovie]);
 
   useEffect(
     function() {
