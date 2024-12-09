@@ -54,7 +54,7 @@ const average = (arr) =>
 const KEY = "3cec4470";
 
 export default function App() {
-  const [query, setQuery] = useState("inception");
+  const [query, setQuery] = useState("");
   const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -124,9 +124,9 @@ function handleDeleteWatched(id) {
           setMovies(data.Search);
           setError("");
           } catch (err) {
-            console.error(err.message);
 
             if (err.name !== "AbortError") {
+              console.log(err.message);
               setError(err.message);
             }
           } finally {
