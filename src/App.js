@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import StarRating from "./StarRating";
 
 const tempMovieData = [
@@ -141,7 +141,6 @@ function handleDeleteWatched(id) {
           }
 
           handleCloseMovie();
-          
           fetchMovies();
           
           return function () {
