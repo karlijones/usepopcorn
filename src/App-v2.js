@@ -342,7 +342,7 @@ return (
             <p>{genre}</p>
             <p>
               <span>⭐️</span>
-              {imdbRating} IMDb rating
+              {imdbRating}IMDb rating
             </p>
           </div>
         </header>
