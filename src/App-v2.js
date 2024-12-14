@@ -255,6 +255,10 @@ function MovieDetails({selectedId, onCloseMovie, onAddWatched, watched}) {
   const watchedUserRating = watched.find
   (movie=>imdbID === selectedId)?.userRating;
 
+  /*eslint-disable*/
+  if (imdbRating > 8) [isTop, setIsTop] = useState(true);
+
+
   const {
     Title: title, 
     Year: year,
@@ -275,7 +279,7 @@ function MovieDetails({selectedId, onCloseMovie, onAddWatched, watched}) {
       year,
       poster,
       imdbRating: Number(imdbRating),
-      runtime: Number(runtime.split(" ").at(0)),
+      runtime; Number(runtime.split(" ").at(0)),
       userRating,
     );
 
