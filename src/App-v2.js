@@ -302,7 +302,7 @@ function MovieDetails({selectedId, onCloseMovie, onAddWatched, watched}) {
     /*onCloseMovie();*/
 
     setAvgRating(Number(imdbRating));
-    alert(avgRating);
+    setAvgRating((avgRating => (avgRating + userRating) / 2));
   }
 
   useEffect(function(){
