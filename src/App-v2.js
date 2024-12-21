@@ -166,6 +166,7 @@ function Search(query, setQuery) {
   const inputEl = useRef(null);
 
   useEffect(function() {
+    console.log(inputEl.current);
     inputEl.current.focus()
   }, [])
 
