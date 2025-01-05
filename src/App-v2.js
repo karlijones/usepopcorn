@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import StarRating from "./StarRating";
+import { useMovies } from "./useMovies";
 
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
@@ -9,6 +10,8 @@ const KEY = "3cec4470";
 export default function App() {
   const [query, setQuery] = useState("");
   const [selectedId, setSelectedId] = useState(null);
+
+  useMovies(query)
 
   /*const [watched, setWatched] = useState([]);*/
   const [watched, setWatched] = useState(function () {
