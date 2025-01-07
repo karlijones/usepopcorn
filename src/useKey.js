@@ -1,23 +1,24 @@
-export function useKey() {
-  const [key, setKey] = useState("");
+import { useEffect } from "react";
 
+export function useKey(key, action) {
   useEffect(
     function() {
-      async function fetchKey() {
-        try {
-          const res = await fetch("/key");
-          if (!res.ok) throw new Error("Something went wrong with fetching key");
-          const data = await res.json();
-          setKey(data.key);
-        } catch (err) {
-          console.log(err.message);
-        }
-      }
-
-      fetchKey();
+        useEffect(
+            function () {
+              function callback(e) {
+                if (e.code.toLowerCase() === key.toLowerCase()) {
+                  action();
+                }
+              }
+        
+              document.addEventListener("keydown", callback);
+        
+              return function () {
+                document.removeEventListener("keydown", callback);
+              };
+            },
+            [action, key]
+          );
     },
-    []
   );
-
-  return key;
 }
